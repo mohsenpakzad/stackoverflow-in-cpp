@@ -4,6 +4,7 @@
 #include "Exceptions.h"
 #include "User.h"
 
+
 #ifdef _WIN32
 #define CLEAR "cls"
 #else //In any other OS
