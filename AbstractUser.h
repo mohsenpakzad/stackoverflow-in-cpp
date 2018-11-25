@@ -3,7 +3,9 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+
 #define lower(str) transform(str.begin(), str.end(), str.begin(), ::tolower)
+
 using namespace std;
 
 enum UserType {

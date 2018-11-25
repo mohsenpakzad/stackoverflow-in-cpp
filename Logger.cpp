@@ -44,6 +44,7 @@ void Logger::saveLogs(){
     ofstream logFile;
     X = std::to_string(x);
     logFile.open("./DATA/log."+X+".txt",ios::trunc);
+
     for (int i=0; i < logs.size();i++){
         logFile << logs[i] << "\n";
     }

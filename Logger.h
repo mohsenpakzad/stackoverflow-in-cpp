@@ -1,5 +1,4 @@
-#ifndef SINGLETONFACTORYMUTED_LOGGER_H
-#define SINGLETONFACTORYMUTED_LOGGER_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -17,10 +16,8 @@ public:
     void log(User * user);
     void saveLogs();
     std::vector<std::string>& getLogs ();
+
 private:
     Logger();
     std::vector<std::string> logs;
 };
-
-
-#endif //SINGLETONFACTORYMUTED_LOGGER_H

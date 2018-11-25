@@ -1,15 +1,19 @@
 #include <iostream>
 #include <string>
+
 #include "AbstractUser.h"
 #include "Exceptions.h"
+
 #include "User.h"
 #include "Logger.h"
 
+#include "GeneralFunctions.h"
+
 
 #ifdef _WIN32
-#define CLEAR "cls"
-#else //In any other OS
-#define CLEAR "clear"
+#define CLEAR "cls" // Clear screen for Windows OS
+#else 
+#define CLEAR "clear" // Clear screen for Linux OS
 #endif
 
 using namespace std;
@@ -22,6 +26,7 @@ enum MenuState {
 };
 
 int main() {
+
     Logger logger = Logger::getInstance();
     User::init("SECRET_KEY");
     User * loggedInUser = nullptr;
@@ -30,43 +35,55 @@ int main() {
 
     char choice;
     while(menuState != MenuState::END) {
+
         system(CLEAR);
-        if (!last_message.empty())
-            cout << last_message << endl;
+
         last_message = "";
         switch (menuState) {
+
             case MenuState::START: {
-                cout << "1. login\n2. signup\ne. exit\n";
-                cin >> choice;
+
+				cout << "1. login" << endl << "2. signup" << endl << "e. exit" << endl;
+				cin >> choice; cleanBuf();
+				system(CLEAR);
+
                 switch (choice) {
+
                     case '1': { // login
                         try {
                             string username, password;
                             cout << "Enter Username: ";
-                            cin >> username;
+							getline(cin, username);
+
                             cout << "Enter Password: ";
-                            cin >> password;
+							getline(cin, password);
+
                             loggedInUser = &User::login(username,password);
                             menuState = MenuState::LOGGED_IN;
                             logger.log(loggedInUser);
+
                         } catch (WrongUsernameOrPasswordException &e) {
                             last_message = e.what();
                         }
                         break;
                     }
+
                     case '2': { // signup
                         try {
                             string username, password, email;
                             cout << "Enter Email: ";
-                            cin >> email;
+							getline(cin, email);
+                            
                             cout << "Enter Username: ";
-                            cin >> username;
+							getline(cin, username);
+
                             cout << "Enter Password: ";
-                            cin >> password;
+							getline(cin, password);
+
                             loggedInUser = &User::signup(username, password, email);
                             menuState = MenuState::LOGGED_IN;
                             logger.log(loggedInUser);
-                            last_message = "User signed up!\n";
+                            last_message = "User signed up!";
                         } catch (UsernameAlreadyExistsException &e) {
                             last_message = e.what();
                             break;
@@ -76,12 +93,14 @@ int main() {
                         }
                         break;
                     }
+
                     case 'e': { // exit
                         menuState = MenuState::END;
                         break;
                     }
+
                     default: { // unknown input
-                        last_message = "Unknown Input\n";
+                        last_message = "Unknown Input";
                         break;
                     }
                 }
@@ -106,7 +125,7 @@ int main() {
                     case 'l': { // logout
                         loggedInUser = nullptr;
                         menuState = MenuState::START;
-                        last_message = "GOOD BYE\n";
+                        last_message = "GOODBYE";
                         break;
                     }
                     case 'e': { // exit
@@ -114,15 +133,19 @@ int main() {
                         break;
                     }
                     default: { // unknown input
-                        last_message = "Unknown Input\n";
+                        last_message = "Unknown Input";
                         break;
                     }
 
                 }
             }
         }
+
+		if (!last_message.empty())
+			cout << last_message << endl;
+		SystemPause;
     }
-    system(CLEAR);
+   
     logger.saveLogs();
     cout << "GOODBYE" << endl;
     return 0;
