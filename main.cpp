@@ -3,6 +3,7 @@
 #include "AbstractUser.h"
 #include "Exceptions.h"
 #include "User.h"
+#include "Logger.h"
 
 
 #ifdef _WIN32
@@ -21,6 +22,7 @@ enum MenuState {
 };
 
 int main() {
+    Logger logger = Logger::getInstance();
     User::init("SECRET_KEY");
     User * loggedInUser = nullptr;
     MenuState menuState = MenuState::START;
@@ -46,6 +48,7 @@ int main() {
                             cin >> password;
                             loggedInUser = &User::login(username,password);
                             menuState = MenuState::LOGGED_IN;
+                            logger.log(loggedInUser);
                         } catch (WrongUsernameOrPasswordException &e) {
                             last_message = e.what();
                         }
@@ -62,6 +65,7 @@ int main() {
                             cin >> password;
                             loggedInUser = &User::signup(username, password, email);
                             menuState = MenuState::LOGGED_IN;
+                            logger.log(loggedInUser);
                             last_message = "User signed up!\n";
                         } catch (UsernameAlreadyExistsException &e) {
                             last_message = e.what();
@@ -119,6 +123,7 @@ int main() {
         }
     }
     system(CLEAR);
+    logger.saveLogs();
     cout << "GOODBYE" << endl;
     return 0;
 }

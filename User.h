@@ -22,6 +22,7 @@ public:
     static User& signup(string username, string password, string email);
 
 private:
+    friend class Logger;
     static string salt;
     static vector<User> users;
 
