@@ -1,64 +1,126 @@
 #include <iostream>
-#include <vector>
+
+#include <sstream>
 #include <fstream>
+#include <time.h>
 #include "Logger.h"
-#include "time.h"
 
-Logger::Logger() {}
+Logger* Logger::logger = nullptr;
 
-const std::string currentDateTime() {
-    time_t     now = time(0);
-    struct tm  tstruct;
-    char       buf[80];
-    tstruct = *localtime(&now);
-    strftime(buf, sizeof(buf), "%Y-%m-%d %X", &tstruct);
+std::string Logger::currentDateTime() {
 
-    return buf;
+	char timeAndDate[MAXLOGSIZE];
+
+	time_t now = time(0);
+	struct tm  tstruct;
+	tstruct = *localtime(&now);
+
+	strftime(timeAndDate, MAXLOGSIZE, "%Y/%m/%d %X", &tstruct);
+
+	return std::string(timeAndDate, strlen(timeAndDate));
 }
 
+int Logger::findCurrentLogNum() {
 
+	int currentLogNum;
+
+	fstream logNumberFile;
+
+
+	logNumberFile.open("./LogsDirectory/_Current_Log.data",std::ios::in);
+	logNumberFile >> currentLogNum;
+	logNumberFile.close();
+
+	logNumberFile.open("./LogsDirectory/_Current_Log.data", std::ios::out);
+	logNumberFile << currentLogNum + 1;
+	logNumberFile.close();
+
+
+	return currentLogNum;
+
+}
+
+Logger::Logger() {
+
+	int newLogFileName = findCurrentLogNum();
+
+	std::string fileName = "./LogsDirectory/log." + std::to_string(newLogFileName) + ".txt";
+	// stringstream ss; string str = ""; int num = 1; ss << a << k;
+
+	logFile = new fstream();
+	logFile->open(fileName.c_str(), std::ios::app); // Create file and ready for store logs
+}
+ 
 Logger& Logger::getInstance() {
-    static Logger lg;
-    return lg;
+
+	if (logger == nullptr) {
+		logger = new Logger();
+	}
+	return *logger;
 }
 
-void Logger::log(User * user) {
-    this->logs.push_back(user->email+" "+user->username+" "+currentDateTime());
+void Logger::addLog(std::string log)const {
+
+	*logFile << log << std::endl;
 }
 
-void Logger::printLogs() {
-    for (int i=0; i < logs.size();i++){
-        std::cout << logs[i] << std::endl;
-    }
+void Logger::closeLogFile() {
+
+	logFile->close();
 }
 
-void Logger::saveLogs(){
-    int x;
-    string X;
+void Logger::startApp_log() {
 
-    ifstream dfile;
-    dfile.open("./DATA/LOG.data");
-    dfile >> x;
-    dfile.close();
+	std::string log = "***** System started on " + currentDateTime() + " *****";
+	addLog(log);
+}
+void Logger::endApp_log(){
 
-    ofstream logFile;
-    X = std::to_string(x);
-    logFile.open("./DATA/log."+X+".txt",ios::trunc);
+	std::string log = "***** System ended on " + currentDateTime() + " *****";
+	addLog(log);
+}
+void Logger::unsuccessfulLogin_log() {
 
-    for (int i=0; i < logs.size();i++){
-        logFile << logs[i] << "\n";
-    }
-    logFile.close();
-    
-    x++;
-    X = std::to_string(x);
+	std::string log = "***** Unsuccessful Login " + currentDateTime() + " *****";
+	addLog(log);
+}
+void Logger::unsuccessfulSignup_log() {
 
-    ofstream dfile2;
-    dfile2.open("./DATA/LOG.data",ios::trunc);
-    dfile2 << X;
-    dfile2.close();
+	std::string log = "***** Unsucessful Signup " + currentDateTime() + " *****";
+	addLog(log);
 }
 
-std::vector<std::string>& Logger::getLogs() {
-    return this->logs;
+void Logger::login_log(User& user)const {
+
+	std::stringstream log;
+	log << "Login --> " << user << " Date[" << currentDateTime() << "]";
+
+	addLog(log.str());
+}
+void Logger::logout_log(User& user)const {
+
+	std::stringstream log;
+	log << "Logout --> " << user << " Date[" << currentDateTime() << "]";
+
+	addLog(log.str());
+}
+void Logger::deleteAccount_log(string deletedUserInfo)const {
+
+	std::stringstream log;
+	log << "Delete Account --> " << deletedUserInfo << " Date[" << currentDateTime() << "]";
+
+	addLog(log.str());
+}
+void Logger::unsuccessfulDeleteAccount_log(string deletedUserInfo)const {
+
+	std::stringstream log;
+	log << "Unsuccessful Delete Account --> " << deletedUserInfo << " Date[" << currentDateTime() << "]";
+
+	addLog(log.str());
+}
+void Logger::signup_log(User& user)const {
+	std::stringstream log;
+	log << "Signup --> " << user << " Date[" << currentDateTime() << "]";
+
+	addLog(log.str());
 }
