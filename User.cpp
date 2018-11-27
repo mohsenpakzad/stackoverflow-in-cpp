@@ -40,6 +40,7 @@ bool User::authenticate(string username, string password){
     lower(username);
     return this->username == username and check_password(password);
 }
+
 void User::deleteAccount(){
     if (this->type == UserType::ADMIN) {
         throw DeleteAdminException();
@@ -80,4 +81,10 @@ void User::init(const string &salt) {
     User::salt = salt;
     users.reserve(20);
     users.emplace_back("admin", "admin", "admin@stackoverflow.com", UserType::ADMIN);
+}
+
+ostream& operator <<(ostream& outS, const User& user) {
+
+	outS << "Email[" + user.email + "] Username[" + user.username + "]";
+	return outS;
 }
