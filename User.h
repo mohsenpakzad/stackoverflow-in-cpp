@@ -51,5 +51,7 @@ public:
     static User& login(string username, string password);
     static User& signup(string username, string password, string email);
 
+public:
+	list<Content> contents;
 
 };
