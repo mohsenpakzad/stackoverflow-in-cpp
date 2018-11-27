@@ -6,19 +6,16 @@
 class User : public AbstractUser {
 
 	friend ostream& operator<<(ostream&, const User&);
-
 private:
 
 	static string salt;
 	static vector<User> users;
-
 
 public:
 
     User(string username, string password, string email, UserType type);
 
     static void init(const string &salt);
-
 
     void set_password(string password);
     bool check_password(string password);
