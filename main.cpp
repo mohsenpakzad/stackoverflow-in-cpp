@@ -18,6 +18,10 @@ enum MenuState {
     LOGGED_IN,
     END
 };
+enum UserState {
+    A_SETTING,
+    HOME
+};
 
 int main() {
     User::init("SECRET_KEY");
