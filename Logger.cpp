@@ -2,6 +2,7 @@
 
 #include <sstream>
 #include <fstream>
+#include <string.h>
 #include <time.h>
 #include "Logger.h"
 
