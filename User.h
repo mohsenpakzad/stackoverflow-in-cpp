@@ -51,11 +51,5 @@ public:
     static User& login(string username, string password);
     static User& signup(string username, string password, string email);
 
-<<<<<<< HEAD
-private:
-    static string salt;
-    static vector<User> users;
 
-=======
->>>>>>> 285d391119a8de0081e2a3735970b0c8591e21e3
 };
