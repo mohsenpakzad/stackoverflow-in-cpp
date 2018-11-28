@@ -14,4 +14,8 @@ add_executable(stackoverflow_in_cpp
     Logger.cpp
     Logger.h
     GeneralFunctions.cpp
-    GeneralFunctions.h)
+    GeneralFunctions.h
+    Content.cpp
+    Content.h
+    ContentRelation.cpp
+    ContentRelation.h)

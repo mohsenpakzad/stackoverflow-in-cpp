@@ -23,7 +23,7 @@ private:
 	ContentType type;
 	vector<ContentRelation> relations;
 
-public:
+//public:
 	
 
 };
