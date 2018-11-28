@@ -17,11 +17,13 @@ class ContentRelations{
     ContentRelationType type;
 };
 class Content{
-public:
+	string* topic;
     string body;
-    ContentType type;
     int visits;
+    ContentType type;
     static list <ContentRelations> relations;
+public:
+    void set_body(string body);
 };
 class User : public AbstractUser {
 
