@@ -1,22 +1,14 @@
 #include <string>
 #include <iostream>
-#include <string.h>
 #include "Content.h"
 
 using namespace std;
 
-Content::Content(string B){
-    body = B;
-}
-Content::Content(char* T, string B){
-    body = B;
-    topic = new char[strlen(T)];
-    strcpy(topic,T);
-}
+Content::Content(string body)
+	:topic(nullptr),visits(nullptr), body(body), type(ContentType::ANSWER){} // constructor for answer
+Content::Content(string topic, string body) 
+	: topic(new string(topic)),visits(new int(0)), body(body),type(ContentType::QUESTION) {} // constructor for question
 
-string Content::getQ(){
-    string out;
-    string t = string(topic);
-    out = out+t+"\n\n"+body;
-    return out;
+string& Content::showTopic() {
+	return *topic;
 }

@@ -26,8 +26,10 @@ public:
     bool authenticate(string username, string password);
     void deleteAccount();
 
-    string showAllQuestions();
+ 
     void makeQuestion(string topic,string body);
+	static void showAllQuestions();
+
 
     static User& login(string username, string password);
     static User& signup(string username, string password, string email);
