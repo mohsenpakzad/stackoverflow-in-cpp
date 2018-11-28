@@ -19,10 +19,6 @@ enum MenuState {
 	LOGGED_IN,
 	END
 };
-enum UserState {
-    A_SETTING,
-    HOME
-};
 
 Logger& logger = Logger::getInstance(); // Create current time logger file
 MenuState menuState = MenuState::START;
@@ -184,6 +180,71 @@ void accountSetting_menu() {
 	} while (choice == AccountSettingOptions::WrongChoice);
 
 }
+bool check_size(int i){
+	return loggedInUser->kick_size()>=i;
+}
+void ManageQuestions_menu(){
+	enum ManageQuestionsOptions {
+		EditQuestion = '1',
+		DeleteQuestion='2',
+		Back = '3',
+		WrongChoice
+	};
+	char choice;
+
+	do{
+		system(CLEAR);
+		cout<<"1.Edit Question"<<endl
+			<<"2.Delete Question"<<endl
+			<<"3.back"<<endl;
+		cin>>choice;cleanBuf();
+		switch(choice){
+			case ManageQuestionsOptions::EditQuestion:{
+				system(CLEAR);
+				int i;
+				cout<<"Please Enter the NO of the Question: ";
+				cin>>i;cleanBuf();
+				if(!check_size(i)){
+					string topic;
+					string body;
+					cout<<"Please enter the topic of your Question:";
+					cin>>topic;
+					cout<<"please enter your question:"<<endl;
+					cin>>body;
+					loggedInUser->editQuestion(i,topic,body);
+					break;
+				}
+				else{
+					cout<<"You did not create "<<i<<" Questions"<<endl;
+					break;
+				}
+
+			}
+			case ManageQuestionsOptions::DeleteQuestion:{
+				system(CLEAR);
+				int i;
+				cout<<"Please Enter the NO of the Question: ";
+				cin>>i;cleanBuf();
+				if(!check_size(i)){
+					loggedInUser->deleteQuestion(i);
+					break;
+				}
+				else{
+					cout<<"You did not create "<<i<<" Questions"<<endl;
+					break;
+				}
+
+			}
+			case ManageQuestionsOptions::Back:{
+				break;
+			}
+			default: { // unknown input
+				choice = ManageQuestionsOptions::WrongChoice;
+				showMessageToUser("Unknown Input");
+			}
+		}
+	}while(choice == ManageQuestionsOptions::WrongChoice);
+}
 void loggedin_menu() {
 
 	enum LoggedinMenuOptions {
@@ -226,6 +287,8 @@ void loggedin_menu() {
 			break;
 		}
 		case LoggedinMenuOptions::ManageQuestions:{
+
+			ManageQuestions_menu();
 
 			// you should write function for manage questions in there (# Seyed Mohammad Reza)
 			break;

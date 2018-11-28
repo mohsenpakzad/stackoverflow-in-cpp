@@ -2,9 +2,8 @@
 
 #include <iostream>
 #include "AbstractUser.h"
-#include <list>
+#include <vector>
 class Content;
-#include "Content.h"
 
 
 class User : public AbstractUser {
@@ -32,6 +31,11 @@ public:
     string showAllQuestions();
     void makeQuestion(string topic,string body);
 
+    void editQuestion(int i,string topic,string& body);
+    void deleteQuestion(int i);
+
     static User& login(string username, string password);
     static User& signup(string username, string password, string email);
+
+	unsigned long kick_size();
 };

@@ -96,9 +96,28 @@ string User::showAllQuestions(){
 }
 
 void User::makeQuestion(string topic,string body){
-    char * T;
+    char * T= nullptr;
     strcpy(T,topic.c_str());
     contents.emplace_back(T,body);
+}
+
+void User::editQuestion(int i,string topic,string& body){
+    char * T= nullptr;
+    strcpy(T,topic.c_str());
+    auto vp=contents.begin();
+    vp+=i;
+    vp->topic=T;
+    vp->body=body;
+}
+void User::deleteQuestion(int i){
+    auto vp=contents.begin();
+    vp+=i;
+    contents.erase(vp);
+
+}
+
+unsigned long User::kick_size() {
+    return contents.size();
 }
 
 ostream& operator <<(ostream& outS, const User& user) {
