@@ -5,12 +5,14 @@
 //
 
 #include <sstream>
+#include "Content.h"
 #include "User.h"
 #include "Exceptions.h"
 #include <iostream>
 
 
 vector<User> User::users;
+vector<Content> User::contents;
 string User::salt;
 
 
@@ -81,6 +83,16 @@ void User::init(const string &salt) {
     User::salt = salt;
     users.reserve(20);
     users.emplace_back("admin", "admin", "admin@stackoverflow.com", UserType::ADMIN);
+}
+
+void User::showAllQuestions(){
+    for(auto user = users.begin(); user != users.end();user++){
+        for(auto &content : user->contents){
+            cout<<content.getTopic()<<endl<<endl;
+            cout<<content.getBody()<<endl;
+            cout<<endl<<endl<<endl;
+        }
+    }
 }
 
 ostream& operator <<(ostream& outS, const User& user) {

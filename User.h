@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "AbstractUser.h"
+#include "Content.h"
 
 class User : public AbstractUser {
 
@@ -10,6 +11,7 @@ private:
 
 	static string salt;
 	static vector<User> users;
+    static vector<Content> contents;
 
 public:
 
@@ -23,6 +25,8 @@ public:
 
     bool authenticate(string username, string password);
     void deleteAccount();
+
+    void showAllQuestions();
 
 
     static User& login(string username, string password);

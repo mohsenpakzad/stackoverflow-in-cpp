@@ -1,0 +1,6 @@
+***** System started on 2018/11/28 16:46:59 *****
+***** Unsuccessful Login 2018/11/28 16:47:31 *****
+Signup --> Email[qwe] Username[qwe] Date[2018/11/28 16:47:35]
+Logout --> Email[qwe] Username[qwe] Date[2018/11/28 16:47:40]
+Login --> Email[qwe] Username[qwe] Date[2018/11/28 16:47:45]
+***** System ended on 2018/11/28 16:47:49 *****
