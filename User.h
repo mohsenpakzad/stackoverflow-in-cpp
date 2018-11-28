@@ -27,7 +27,7 @@ public:
     void deleteAccount();
 
     void showAllQuestions();
-
+    void makeQuestion(string topic,string body);
 
     static User& login(string username, string password);
     static User& signup(string username, string password, string email);

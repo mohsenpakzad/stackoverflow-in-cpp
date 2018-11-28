@@ -5,6 +5,7 @@
 //
 
 #include <sstream>
+#include <string.h>
 #include "Content.h"
 #include "User.h"
 #include "Exceptions.h"
@@ -92,6 +93,12 @@ void User::showAllQuestions(){
             cout<<endl<<endl<<endl;
         }
     }
+}
+
+void User::makeQuestion(string topic,string body){
+    char * T;
+    strcpy(T,topic.c_str());
+    contents.emplace_back(T,body);
 }
 
 ostream& operator <<(ostream& outS, const User& user) {
