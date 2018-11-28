@@ -4,6 +4,8 @@
 #include "AbstractUser.h"
 #include <list>
 class Content;
+#include "Content.h"
+
 
 class User : public AbstractUser {
 
@@ -12,6 +14,7 @@ private:
 
 	static string salt;
 	static vector<User> users;
+    vector<Content> contents;
 
 public:
 
@@ -26,11 +29,9 @@ public:
     bool authenticate(string username, string password);
     void deleteAccount();
 
+    string showAllQuestions();
+    void makeQuestion(string topic,string body);
 
     static User& login(string username, string password);
     static User& signup(string username, string password, string email);
-
-public:
-	list<Content> contents;
-
 };

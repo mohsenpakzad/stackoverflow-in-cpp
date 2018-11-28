@@ -16,14 +16,17 @@ class Content {
 
 private:
 
-	string * topic; // topic is only for question, it must allocated only for question!
+	char * topic; // topic is only for question, it must allocated only for question!
 	string body;
 
 	int visits;
 	ContentType type;
-	vector<ContentRelation> relations;
+	static vector<ContentRelation> relations;
+public:
 
-//public:
-	
 
+	Content(char* T, string B="");
+	Content(string B="");
+
+	string getQ();
 };

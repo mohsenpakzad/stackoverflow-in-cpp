@@ -216,8 +216,13 @@ void loggedin_menu() {
 		switch (choice) {
 
 		case LoggedinMenuOptions::MakeNewQuestion:{
-
-			// make new question function (# Seyed Ali)
+			string topic;
+			string body;
+			cout<<"Please enter the topic of your Question:";
+			cin>>topic;
+			cout<<"please enter your question:"<<endl;
+			cin>>body;
+			loggedInUser->makeQuestion(topic,body);
 			break;
 		}
 		case LoggedinMenuOptions::ManageQuestions:{
@@ -226,7 +231,8 @@ void loggedin_menu() {
 			break;
 		}
 		case LoggedinMenuOptions::ShowAllQuestions:{
-
+			cout<<loggedInUser->showAllQuestions()<<endl;
+			SystemPause;
 			break;
 		}
 		case LoggedinMenuOptions::AccountSetting:{

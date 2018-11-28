@@ -5,6 +5,8 @@
 //
 
 #include <sstream>
+#include <string.h>
+#include "Content.h"
 #include "User.h"
 #include "Exceptions.h"
 #include <iostream>
@@ -81,6 +83,22 @@ void User::init(const string &salt) {
     User::salt = salt;
     users.reserve(20);
     users.emplace_back("admin", "admin", "admin@stackoverflow.com", UserType::ADMIN);
+}
+
+string User::showAllQuestions(){
+    string out;
+    for(auto user = users.begin(); user != users.end();user++){
+        for(auto &content : user->contents){
+            out = out+content.getQ()+"\n\n\n\n";
+        }
+    }
+    return out;
+}
+
+void User::makeQuestion(string topic,string body){
+    char * T;
+    strcpy(T,topic.c_str());
+    contents.emplace_back(T,body);
 }
 
 ostream& operator <<(ostream& outS, const User& user) {
