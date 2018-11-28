@@ -16,7 +16,7 @@ class Content {
 
 private:
 
-	string & topic; // topic is only for question, it must allocated only for question!
+	char * topic; // topic is only for question, it must allocated only for question!
 	string body;
 
 	int visits;
@@ -25,8 +25,8 @@ private:
 
 public:
 
-	Content(string T="", string B="");
+	Content(char* T, string B="");
+	Content(string B="");
 
-	string& getTopic();
-	string& getBody();
+	string getQ();
 };

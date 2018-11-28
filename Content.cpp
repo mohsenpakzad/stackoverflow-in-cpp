@@ -1,17 +1,22 @@
 #include <string>
 #include <iostream>
+#include <string.h>
 #include "Content.h"
 
 using namespace std;
 
-Content::Content(string T, string B):topic(T),body(B){}
-
-string& Content::getTopic(){
-    string& t = topic;
-    return t;
+Content::Content(string B){
+    body = B;
+}
+Content::Content(char* T, string B){
+    body = B;
+    topic = new char[strlen(T)];
+    strcpy(topic,T);
 }
 
-string& Content::getBody(){
-    string & b = body;
-    return b;
+string Content::getQ(){
+    string out;
+    string t = string(topic);
+    out = out+t+"\n"+body;
+    return out;
 }

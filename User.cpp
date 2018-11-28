@@ -88,8 +88,7 @@ void User::init(const string &salt) {
 void User::showAllQuestions(){
     for(auto user = users.begin(); user != users.end();user++){
         for(auto &content : user->contents){
-            cout<<content.getTopic()<<endl<<endl;
-            cout<<content.getBody()<<endl;
+            cout<<content.getQ()<<endl<<endl;
             cout<<endl<<endl<<endl;
         }
     }
