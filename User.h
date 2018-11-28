@@ -26,7 +26,7 @@ public:
     bool authenticate(string username, string password);
     void deleteAccount();
 
-    void showAllQuestions();
+    string showAllQuestions();
     void makeQuestion(string topic,string body);
 
     static User& login(string username, string password);

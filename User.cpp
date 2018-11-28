@@ -86,13 +86,14 @@ void User::init(const string &salt) {
     users.emplace_back("admin", "admin", "admin@stackoverflow.com", UserType::ADMIN);
 }
 
-void User::showAllQuestions(){
+string User::showAllQuestions(){
+    string out;
     for(auto user = users.begin(); user != users.end();user++){
         for(auto &content : user->contents){
-            cout<<content.getQ()<<endl<<endl;
-            cout<<endl<<endl<<endl;
+            out = out+content.getQ()+"\n\n";
         }
     }
+    return out;
 }
 
 void User::makeQuestion(string topic,string body){
