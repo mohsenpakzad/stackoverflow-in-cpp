@@ -13,7 +13,6 @@
 
 
 vector<User> User::users;
-vector<Content> User::contents;
 string User::salt;
 
 
@@ -90,7 +89,7 @@ string User::showAllQuestions(){
     string out;
     for(auto user = users.begin(); user != users.end();user++){
         for(auto &content : user->contents){
-            out = out+content.getQ()+"\n\n";
+            out = out+content.getQ()+"\n\n\n\n";
         }
     }
     return out;

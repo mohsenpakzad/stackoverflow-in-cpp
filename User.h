@@ -11,7 +11,7 @@ private:
 
 	static string salt;
 	static vector<User> users;
-    static vector<Content> contents;
+    vector<Content> contents;
 
 public:
 

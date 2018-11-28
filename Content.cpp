@@ -17,6 +17,6 @@ Content::Content(char* T, string B){
 string Content::getQ(){
     string out;
     string t = string(topic);
-    out = out+t+"\n"+body;
+    out = out+t+"\n\n"+body;
     return out;
 }

@@ -228,6 +228,7 @@ void loggedin_menu() {
 		}
 		case LoggedinMenuOptions::ShowAllQuestions:{
 			cout<<loggedInUser->showAllQuestions()<<endl;
+			SystemPause;
 			break;
 		}
 		case LoggedinMenuOptions::AccountSetting:{
