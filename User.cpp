@@ -93,7 +93,14 @@ void User::showAllQuestions(){
 		}
 	}
 }
+void User::showMyQuestions()  {
+    int i=1;
+    for(auto &content : this->contents) {
+        cout <<i<<"."<< content.showTopic() << endl;
+        i++;
+    }
 
+}
 void User::makeQuestion(string topic,string body){
 
 	contents.emplace_back(topic, body);

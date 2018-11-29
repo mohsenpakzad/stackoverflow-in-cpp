@@ -201,8 +201,9 @@ void ManageQuestions_menu(){
 		switch(choice){
 			case ManageQuestionsOptions::EditQuestion:{
 				system(CLEAR);
+				loggedInUser->showMyQuestions();
 				int i;
-				cout<<"Please Enter the NO of the Question: "<<endl;
+				cout<<endl<<"Please Enter the NO of the Question: "<<endl;
 				cin>>i;cleanBuf();
 				if(check_size(i)){
 					string topic;
@@ -223,8 +224,9 @@ void ManageQuestions_menu(){
 			}
 			case ManageQuestionsOptions::DeleteQuestion:{
 				system(CLEAR);
+				loggedInUser->showMyQuestions();
 				int i;
-				cout<<"Please Enter the NO of the Question: ";
+				cout<<endl<<"Please Enter the NO of the Question: ";
 				cin>>i;cleanBuf();
 				if(check_size(i)){
 					loggedInUser->deleteQuestion(i);

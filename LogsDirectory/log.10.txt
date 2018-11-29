@@ -1,0 +1,10 @@
+***** System started on 2018/11/29 20:25:12 *****
+Signup --> Email[mrm] Username[mrm] Date[2018/11/29 20:25:18]
+Logout --> Email[mrm] Username[mrm] Date[2018/11/29 20:28:06]
+Signup --> Email[punch] Username[punch] Date[2018/11/29 20:28:21]
+Logout --> Email[punch] Username[punch] Date[2018/11/29 20:29:24]
+***** Unsuccessful Login 2018/11/29 20:29:35 *****
+Login --> Email[mrm] Username[mrm] Date[2018/11/29 20:29:42]
+Delete Account --> Email[mrm] Username[mrm] Date[2018/11/29 20:30:00]
+Login --> Email[punch] Username[punch] Date[2018/11/29 20:30:07]
+***** System ended on 2018/11/29 20:30:28 *****
