@@ -277,13 +277,18 @@ void loggedin_menu() {
 		switch (choice) {
 
 		case LoggedinMenuOptions::MakeNewQuestion:{
+
 			string topic;
 			string body;
-			cout<<"Please enter the topic of your Question:";
-			cin>>topic;
-			cout<<"please enter your question:"<<endl;
-			cin>>body;
+
+			system(CLEAR);
+			cout << "Please enter the topic of your question:" << endl;
+			getline(cin,topic);
+			cout << "Please enter your question:" << endl;
+			getline(cin,body);
+
 			loggedInUser->makeQuestion(topic,body);
+			showMessageToUser("Question successfuly created");
 			break;
 		}
 		case LoggedinMenuOptions::ManageQuestions:{
@@ -294,7 +299,9 @@ void loggedin_menu() {
 			break;
 		}
 		case LoggedinMenuOptions::ShowAllQuestions:{
-			cout<<loggedInUser->showAllQuestions()<<endl;
+			
+			system(CLEAR);
+			User::showAllQuestions();
 			SystemPause;
 			break;
 		}

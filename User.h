@@ -28,8 +28,10 @@ public:
     bool authenticate(string username, string password);
     void deleteAccount();
 
-    string showAllQuestions();
+ 
     void makeQuestion(string topic,string body);
+	static void showAllQuestions();
+
 
     void editQuestion(int i,string topic,string& body);
     void deleteQuestion(int i);

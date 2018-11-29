@@ -4,12 +4,12 @@
 // Created by spsina on 11/8/18.
 //
 
+#include <iostream>
 #include <sstream>
 #include <string.h>
 #include "Content.h"
 #include "User.h"
 #include "Exceptions.h"
-#include <iostream>
 
 
 vector<User> User::users;
@@ -85,20 +85,19 @@ void User::init(const string &salt) {
     users.emplace_back("admin", "admin", "admin@stackoverflow.com", UserType::ADMIN);
 }
 
-string User::showAllQuestions(){
-    string out;
-    for(auto user = users.begin(); user != users.end();user++){
-        for(auto &content : user->contents){
-            out = out+content.getQ()+"\n\n\n\n";
-        }
-    }
-    return out;
+void User::showAllQuestions(){
+
+	for (auto &user : users) {
+		for (auto &content : user.contents) {
+			cout << content.showTopic() << endl;
+		}
+	}
 }
 
 void User::makeQuestion(string topic,string body){
-    char * T= nullptr;
-    strcpy(T,topic.c_str());
-    contents.emplace_back(T,body);
+
+	contents.emplace_back(topic, body);
+
 }
 
 void User::editQuestion(int i,string topic,string& body){
