@@ -6,8 +6,6 @@
 
 #define MAXLOGSIZE 1000
 
-#define _Log(x) Logger::getInstance().log((x));
-
 
 class Logger{
 

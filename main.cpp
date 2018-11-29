@@ -25,9 +25,6 @@ MenuState menuState = MenuState::START;
 User * loggedInUser = nullptr;
 
 
-//TODO: Open loggedin_menu and go to ManageQuestions case and add your written "function" (# Seyed Mohmmad Reza)
-//TODO: Open loggedin_menu and go to MakeNewQuestion case and add your written "function" (# Seyed Ali)
-
 
 void start_menu() {
 
@@ -184,6 +181,7 @@ bool check_size(int i){
 	return loggedInUser->kick_size()>=i;
 }
 void ManageQuestions_menu(){
+
 	enum ManageQuestionsOptions {
 		EditQuestion = '1',
 		DeleteQuestion='2',
@@ -197,49 +195,64 @@ void ManageQuestions_menu(){
 		cout<<"1.Edit Question"<<endl
 			<<"2.Delete Question"<<endl
 			<<"3.back"<<endl;
+
 		cin>>choice;cleanBuf();
+
 		switch(choice){
+
 			case ManageQuestionsOptions::EditQuestion:{
-				system(CLEAR);
+
 				int i;
+
+				system(CLEAR);
 				cout<<"Please Enter the NO of the Question: "<<endl;
 				cin>>i;cleanBuf();
+
 				if(check_size(i)){
+
 					string topic;
 					string body;
+
 					cout<<"Please enter the topic of your Question:"<<endl;
 					getline(cin,topic);
 					cout<<"please enter your question:"<<endl;
 					getline(cin,body);
+
 					loggedInUser->editQuestion(i,topic,body);
 					showMessageToUser("You have successfully edited your question");
-					break;
+
 				}
 				else{
-					showMessageToUser("You did not create this amount of Questions");
-					break;
-				}
 
+					showMessageToUser("You did not create this amount of Questions");
+				}
+				break;
 			}
+
 			case ManageQuestionsOptions::DeleteQuestion:{
-				system(CLEAR);
+
 				int i;
+
+				system(CLEAR);
 				cout<<"Please Enter the NO of the Question: ";
 				cin>>i;cleanBuf();
+
 				if(check_size(i)){
 					loggedInUser->deleteQuestion(i);
 					showMessageToUser("Question successfully deleted");
-					break;
+					
 				}
 				else{
-					showMessageToUser("You did not create this amount of Questions");
-					break;
-				}
 
+					showMessageToUser("You did not create this amount of Questions");
+				}
+				break;
 			}
+
 			case ManageQuestionsOptions::Back:{
 				break;
 			}
+
 			default: { // unknown input
 				choice = ManageQuestionsOptions::WrongChoice;
 				showMessageToUser("Unknown Input");

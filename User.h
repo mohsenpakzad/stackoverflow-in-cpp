@@ -36,6 +36,7 @@ public:
     void editQuestion(int i,string& topic,string& body);
     void deleteQuestion(int i);
 
+
     static User& login(string username, string password);
     static User& signup(string username, string password, string email);
 
