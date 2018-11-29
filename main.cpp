@@ -202,20 +202,21 @@ void ManageQuestions_menu(){
 			case ManageQuestionsOptions::EditQuestion:{
 				system(CLEAR);
 				int i;
-				cout<<"Please Enter the NO of the Question: ";
+				cout<<"Please Enter the NO of the Question: "<<endl;
 				cin>>i;cleanBuf();
-				if(!check_size(i)){
+				if(check_size(i)){
 					string topic;
 					string body;
-					cout<<"Please enter the topic of your Question:";
-					cin>>topic;
+					cout<<"Please enter the topic of your Question:"<<endl;
+					getline(cin,topic);
 					cout<<"please enter your question:"<<endl;
-					cin>>body;
+					getline(cin,body);
 					loggedInUser->editQuestion(i,topic,body);
+					showMessageToUser("You have successfully edited your question");
 					break;
 				}
 				else{
-					cout<<"You did not create "<<i<<" Questions"<<endl;
+					showMessageToUser("You did not create this amount of Questions");
 					break;
 				}
 
@@ -225,12 +226,13 @@ void ManageQuestions_menu(){
 				int i;
 				cout<<"Please Enter the NO of the Question: ";
 				cin>>i;cleanBuf();
-				if(!check_size(i)){
+				if(check_size(i)){
 					loggedInUser->deleteQuestion(i);
+					showMessageToUser("Question successfully deleted");
 					break;
 				}
 				else{
-					cout<<"You did not create "<<i<<" Questions"<<endl;
+					showMessageToUser("You did not create this amount of Questions");
 					break;
 				}
 
@@ -288,7 +290,7 @@ void loggedin_menu() {
 			getline(cin,body);
 
 			loggedInUser->makeQuestion(topic,body);
-			showMessageToUser("Question successfuly created");
+			showMessageToUser("Question successfully created");
 			break;
 		}
 		case LoggedinMenuOptions::ManageQuestions:{

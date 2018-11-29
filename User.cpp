@@ -100,17 +100,15 @@ void User::makeQuestion(string topic,string body){
 
 }
 
-void User::editQuestion(int i,string topic,string& body){
-    char * T= nullptr;
-    strcpy(T,topic.c_str());
-    auto vp=contents.begin();
-    vp+=i;
-    vp->topic=T;
-    vp->body=body;
+void User::editQuestion(int i,string& topic,string& body){
+    
+    contents[i-1]=Content(topic,body);
+    
 }
 void User::deleteQuestion(int i){
+    
     auto vp=contents.begin();
-    vp+=i;
+    vp+=i-1;
     contents.erase(vp);
 
 }

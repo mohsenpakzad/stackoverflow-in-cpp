@@ -31,5 +31,5 @@ public:
 
 	string& showTopic();
 
-	friend void User::editQuestion(int i,string topic,string& body);
+	friend void User::editQuestion(int i,string& topic,string& body);
 };

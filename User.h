@@ -33,7 +33,7 @@ public:
 	static void showAllQuestions();
 
 
-    void editQuestion(int i,string topic,string& body);
+    void editQuestion(int i,string& topic,string& body);
     void deleteQuestion(int i);
 
     static User& login(string username, string password);
