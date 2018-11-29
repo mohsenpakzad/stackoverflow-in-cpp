@@ -9,7 +9,7 @@ enum ContentRelationType {
 };
 
 class ContentRelation {
-//    Content* destination;
-//    ContentRelationType type;
+    Content* destination;
+    ContentRelationType type;
 
 };

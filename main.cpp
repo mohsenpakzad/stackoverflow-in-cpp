@@ -205,7 +205,9 @@ void ManageQuestions_menu(){
 				int i;
 
 				system(CLEAR);
-				cout<<"Please Enter the NO of the Question: "<<endl;
+				loggedInUser->showMyQuestions();
+				cout<<endl<<"Please Enter the NO of the Question: "<<endl;
+
 				cin>>i;cleanBuf();
 
 				if(check_size(i)){
@@ -234,7 +236,9 @@ void ManageQuestions_menu(){
 				int i;
 
 				system(CLEAR);
-				cout<<"Please Enter the NO of the Question: ";
+				loggedInUser->showMyQuestions();
+				cout<<endl<<"Please Enter the NO of the Question: ";
+
 				cin>>i;cleanBuf();
 
 				if(check_size(i)){
@@ -253,7 +257,7 @@ void ManageQuestions_menu(){
 				break;
 			}
 
-			default: { // unknown input
+			default: { 
 				choice = ManageQuestionsOptions::WrongChoice;
 				showMessageToUser("Unknown Input");
 			}
@@ -309,8 +313,6 @@ void loggedin_menu() {
 		case LoggedinMenuOptions::ManageQuestions:{
 
 			ManageQuestions_menu();
-
-			// you should write function for manage questions in there (# Seyed Mohammad Reza)
 			break;
 		}
 		case LoggedinMenuOptions::ShowAllQuestions:{

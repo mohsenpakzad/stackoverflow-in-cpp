@@ -31,7 +31,7 @@ public:
  
     void makeQuestion(string topic,string body);
 	static void showAllQuestions();
-
+    void showMyQuestions();
 
     void editQuestion(int i,string& topic,string& body);
     void deleteQuestion(int i);
